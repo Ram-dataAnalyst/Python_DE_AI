@@ -1,0 +1,51 @@
+{
+  "dataset_business_purpose": "The dataset contains customer master data for a business with multiple branches, capturing personal details, contact information, and demographic data.",
+  "recommended_target_table": "dim_customer",
+  "candidate_primary_key": [
+    "CustomerID"
+  ],
+  "recommended_partition_column": null,
+  "business_meaning_of_every_column": {
+    "Address": "The physical mailing address of the customer, often containing street, city, state, and postal code embedded in a single comma-separated or unformatted string.",
+    "BranchID": "The identifier of the specific company branch associated with the customer.",
+    "CustomerID": "The unique identifier assigned to each customer.",
+    "DateOfBirth": "The birth date of the customer.",
+    "Email": "The electronic mail address of the customer.",
+    "FirstName": "The given name of the customer.",
+    "LastName": "The family name or surname of the customer.",
+    "PhoneNumber": "The contact telephone number of the customer, which may include extensions or varying international formats."
+  },
+  "recommended_target_data_type": {
+    "Address": "VARCHAR(255)",
+    "BranchID": "INTEGER",
+    "CustomerID": "INTEGER",
+    "DateOfBirth": "DATE",
+    "Email": "VARCHAR(255)",
+    "FirstName": "VARCHAR(100)",
+    "LastName": "VARCHAR(100)",
+    "PhoneNumber": "VARCHAR(50)"
+  },
+  "nullable_or_not": {
+    "Address": "NOT NULL (based on 0 null_count in profile, though data quality review suggests potential parsing risks)",
+    "BranchID": "NOT NULL (based on 0 null_count in profile)",
+    "CustomerID": "NOT NULL (based on 0 null_count in profile)",
+    "DateOfBirth": "NOT NULL (based on 0 null_count in profile)",
+    "Email": "NOT NULL (based on 0 null_count in profile)",
+    "FirstName": "NOT NULL (based on 0 null_count in profile)",
+    "LastName": "NOT NULL (based on 0 null_count in profile)",
+    "PhoneNumber": "NOT NULL (based on 0 null_count in profile)"
+  },
+  "possible_foreign_keys": [
+    {
+      "column": "BranchID",
+      "referenced_table": "dim_branch",
+      "referenced_column": "BranchID",
+      "confidence": "uncertain"
+    }
+  ],
+  "data_quality_concerns": [
+    "The input file is not properly parsed; all 8 distinct logical columns are currently concatenated into a single comma-delimited string column per row due to unquoted commas embedded within the Address field.",
+    "Addresses contain embedded commas (e.g., 'North Jane, MH 48812') which will break standard CSV parsing unless proper escaping or regex-based extraction is applied.",
+    "Phone numbers vary widely in formatting (e.g., dashes, parentheses, dots, and extensions like 'x06431'), requiring standardization during ingestion."
+  ]
+}

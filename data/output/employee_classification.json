@@ -1,0 +1,31 @@
+{
+  "business_domain": "Banking and Financial Services",
+  "dataset_type": "Human Resources / Employee Master Data",
+  "pii_columns": [
+    "FirstName",
+    "LastName"
+  ],
+  "sensitive_columns": [],
+  "identifier_columns": [
+    "BranchID",
+    "EmployeeID",
+    "ManagerID"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "Hiredate"
+  ],
+  "categorical_columns": [
+    "Position"
+  ],
+  "column_classifications": {
+    "BranchID": "Identifier column representing the unique code for a branch office.",
+    "EmployeeID": "Identifier column representing the unique identifier for an employee. Stored as float due to null values.",
+    "FirstName": "PII column representing the first name of the employee.",
+    "Hiredate": "Date column representing the date the employee was hired.",
+    "LastName": "PII column representing the last name of the employee.",
+    "ManagerID": "Identifier column representing the employee ID of the respective manager. Stored as float due to null values.",
+    "Position": "Categorical column representing the job title or role of the employee within the organization."
+  },
+  "notes": "EmployeeID and ManagerID have null values and floating-point data types, which should be cleaned and cast to integers. Position contains obvious typographical inconsistencies (e.g., 'Manager', 'Manger', 'Manage') that require data standardization. ManagerID has a high null percentage (34.57%), which is typical for top-level executives or missing organizational hierarchy data."
+}

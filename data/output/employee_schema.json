@@ -1,0 +1,54 @@
+{
+  "dataset_business_purpose": "Stores employee master data for a multi-branch organization (likely a bank or financial institution), tracking staff demographics, branch assignments, management hierarchies, and job positions.",
+  "recommended_target_table": "dim_employee",
+  "candidate_primary_key": "EmployeeID",
+  "recommended_partition_column": "BranchID",
+  "business_meaning_of_every_column": {
+    "BranchID": "Unique identifier for the branch office where the employee is located.",
+    "EmployeeID": "Unique identifier assigned to each employee.",
+    "FirstName": "The first name of the employee.",
+    "Hiredate": "The date on which the employee was hired.",
+    "LastName": "The last name of the employee.",
+    "ManagerID": "The EmployeeID of the employee's direct manager.",
+    "Position": "The job title or role held by the employee within the organization."
+  },
+  "recommended_target_data_type": {
+    "BranchID": "INT",
+    "EmployeeID": "INT",
+    "FirstName": "VARCHAR(50)",
+    "Hiredate": "DATE",
+    "LastName": "VARCHAR(50)",
+    "ManagerID": "INT",
+    "Position": "VARCHAR(50)"
+  },
+  "nullable_or_not": {
+    "BranchID": "NOT NULL",
+    "EmployeeID": "NULL (Uncertain: 7 null values detected; likely missing source data rather than true business optionality)",
+    "FirstName": "NOT NULL",
+    "Hiredate": "NOT NULL",
+    "LastName": "NOT NULL",
+    "ManagerID": "NULL (Uncertain: 34.57% null values; expected for top-level executives or managers without upper management assigned)",
+    "Position": "NOT NULL"
+  },
+  "possible_foreign_keys": [
+    {
+      "column": "BranchID",
+      "referenced_table": "dim_branch",
+      "referenced_column": "BranchID",
+      "confidence": "Uncertain - highly probable based on business context, but unconfirmed without branch dimension metadata."
+    },
+    {
+      "column": "ManagerID",
+      "referenced_table": "dim_employee",
+      "referenced_column": "EmployeeID",
+      "confidence": "Uncertain - self-referencing relationship implied by naming convention, but unconfirmed."
+    }
+  ],
+  "data_quality_concerns": [
+    "EmployeeID is stored as a float64 type with null values, indicating CSV parsing issues or missing keys for 7 records.",
+    "ManagerID is stored as a float64 type with 34.57% null values, requiring casting to integer after handling nulls.",
+    "Hiredate is stored as a string format ('DD-MM-YYYY') and must be standardized to a proper DATE type.",
+    "Position column contains typographical errors and variations that need normalization (e.g., 'Manager', 'Manger', 'Manage').",
+    "EmployeeID has 7 null records and 7 fewer actual counts than total rows, representing missing primary keys that need remediation."
+  ]
+}

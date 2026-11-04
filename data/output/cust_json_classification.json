@@ -1,0 +1,58 @@
+{
+  "business_domain": "Retail Banking / Financial Services",
+  "dataset_type": "Customer Master Data",
+  "pii_columns": [
+    "Address",
+    "Email",
+    "FirstName",
+    "LastName",
+    "PhoneNumber"
+  ],
+  "sensitive_columns": [
+    "DateOfBirth"
+  ],
+  "identifier_columns": [
+    "CustomerID"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "DateOfBirth"
+  ],
+  "categorical_columns": [
+    "BranchID"
+  ],
+  "column_classifications": {
+    "Address": {
+      "classification": "PII",
+      "reasoning": "Contains physical street addresses which uniquely identify individuals."
+    },
+    "BranchID": {
+      "classification": "Categorical",
+      "reasoning": "Represents discrete branches associated with customers, with a limited cardinality of 200 across 50,000 records."
+    },
+    "CustomerID": {
+      "classification": "Identifier",
+      "reasoning": "Acts as the primary unique key for each customer record."
+    },
+    "DateOfBirth": {
+      "classification": "Sensitive",
+      "reasoning": "Represents a sensitive personal attribute (birth date) used in identity verification and age calculations."
+    },
+    "Email": {
+      "classification": "PII",
+      "reasoning": "Contains direct electronic contact information linked to individuals."
+    },
+    "FirstName": {
+      "classification": "PII",
+      "reasoning": "Contains personal name data that identifies individuals when combined with last names."
+    },
+    "LastName": {
+      "classification": "PII",
+      "reasoning": "Contains personal name data that identifies individuals when combined with first names."
+    },
+    "PhoneNumber": {
+      "classification": "PII",
+      "reasoning": "Contains direct telephonic contact information linked to individuals."
+    }
+  }
+}

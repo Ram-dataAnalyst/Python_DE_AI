@@ -1,0 +1,62 @@
+{
+  "business_domain": "retail banking or financial services",
+  "dataset_type": "customer master",
+  "pii_columns": [
+    "Address",
+    "Email",
+    "FirstName",
+    "LastName",
+    "PhoneNumber"
+  ],
+  "sensitive_columns": [
+    "DateOfBirth",
+    "Email",
+    "PhoneNumber",
+    "Address"
+  ],
+  "identifier_columns": [
+    "CustomerID",
+    "BranchID"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "DateOfBirth"
+  ],
+  "categorical_columns": [
+    "BranchID"
+  ],
+  "column_classifications": {
+    "Address": {
+      "classification": "pii",
+      "reasoning": "Contains physical geographic location data that can identify an individual."
+    },
+    "BranchID": {
+      "classification": "categorical",
+      "reasoning": "Represents a discrete identifier for bank branches (200 unique values across 50,001 rows)."
+    },
+    "CustomerID": {
+      "classification": "identifier",
+      "reasoning": "Unique primary key for identifying individual customers."
+    },
+    "DateOfBirth": {
+      "classification": "sensitive",
+      "reasoning": "Represents birth date, which is sensitive temporal data often used for age verification and identity confirmation."
+    },
+    "Email": {
+      "classification": "pii",
+      "reasoning": "Contains direct electronic contact information linked to an individual."
+    },
+    "FirstName": {
+      "classification": "pii",
+      "reasoning": "Represents a personal name component that contributes to individual identification."
+    },
+    "LastName": {
+      "classification": "pii",
+      "reasoning": "Represents a personal name component that contributes to individual identification."
+    },
+    "PhoneNumber": {
+      "classification": "pii",
+      "reasoning": "Contains direct telephonic contact information linked to an individual."
+    }
+  }
+}

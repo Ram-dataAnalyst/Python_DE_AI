@@ -1,0 +1,51 @@
+{
+  "dataset_business_purpose": "Managing customer master data across various bank or retail branches, capturing demographic information, contact details, and branch associations.",
+  "recommended_target_table": "dim_customer",
+  "candidate_primary_key": [
+    "CustomerID"
+  ],
+  "recommended_partition_column": "BranchID",
+  "business_meaning_of_columns": {
+    "Address": "The physical residential or mailing address of the customer.",
+    "BranchID": "The unique identifier of the bank branch or store where the customer is registered or primarily serviced.",
+    "CustomerID": "The unique system-generated identifier for each customer.",
+    "DateOfBirth": "The calendar date on which the customer was born.",
+    "Email": "The primary electronic mail address for customer communication.",
+    "FirstName": "The given name of the customer.",
+    "LastName": "The family name or surname of the customer.",
+    "PhoneNumber": "The primary telephone contact number for the customer, including potential extensions or country codes."
+  },
+  "recommended_target_data_type": {
+    "Address": "VARCHAR",
+    "BranchID": "INTEGER",
+    "CustomerID": "INTEGER",
+    "DateOfBirth": "DATE",
+    "Email": "VARCHAR",
+    "FirstName": "VARCHAR",
+    "LastName": "VARCHAR",
+    "PhoneNumber": "VARCHAR"
+  },
+  "nullable_or_not": {
+    "Address": "NOT NULL",
+    "BranchID": "NOT NULL",
+    "CustomerID": "NOT NULL",
+    "DateOfBirth": "NOT NULL",
+    "Email": "NOT NULL",
+    "FirstName": "NOT NULL",
+    "LastName": "NOT NULL",
+    "PhoneNumber": "NOT NULL"
+  },
+  "possible_foreign_keys": [
+    {
+      "column": "BranchID",
+      "referenced_table": "dim_branch",
+      "referenced_column": "BranchID",
+      "status": "Uncertain (logical inference, requires cross-table validation)"
+    }
+  ],
+  "data_quality_concerns": [
+    "Email addresses have 45,768 unique values out of 50,001 records, indicating potential duplicate emails or shared family/corporate emails.",
+    "PhoneNumber contains varied formatting (e.g., dashes, parentheses, dots, and extension suffixes like 'x06431'), requiring standardization.",
+    "DateOfBirth ranges from 1935 to 2004, which should be validated against minimum age requirements depending on business rules."
+  ]
+}

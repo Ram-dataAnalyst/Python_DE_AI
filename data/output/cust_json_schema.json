@@ -1,0 +1,51 @@
+{
+  "dataset_business_purpose": "The dataset represents a master repository of customer profiles for a multi-branch business organization, storing demographic, contact, and branch assignment information for analytical, operational, or CRM purposes.",
+  "recommended_target_table": "dim_customer",
+  "candidate_primary_key": [
+    "CustomerID"
+  ],
+  "recommended_partition_column": "BranchID",
+  "business_meaning_of_every_column": {
+    "Address": "The residential or mailing street address associated with the customer.",
+    "BranchID": "The unique identifier of the company branch where the customer is registered or primarily serviced.",
+    "CustomerID": "The unique system-generated identifier assigned to each individual customer.",
+    "DateOfBirth": "The birth date of the customer, used for age calculation and demographic segmentation.",
+    "Email": "The primary electronic mail address used for customer communication.",
+    "FirstName": "The given name of the customer.",
+    "LastName": "The family name or surname of the customer.",
+    "PhoneNumber": "The primary telephone contact number for the customer, including potential extensions and country codes."
+  },
+  "recommended_target_data_type": {
+    "Address": "STRING",
+    "BranchID": "INTEGER",
+    "CustomerID": "INTEGER",
+    "DateOfBirth": "DATE",
+    "Email": "STRING",
+    "FirstName": "STRING",
+    "LastName": "STRING",
+    "PhoneNumber": "STRING"
+  },
+  "nullable_or_not": {
+    "Address": "NOT NULL",
+    "BranchID": "NOT NULL",
+    "CustomerID": "NOT NULL",
+    "DateOfBirth": "NOT NULL",
+    "Email": "NOT NULL",
+    "FirstName": "NOT NULL",
+    "LastName": "NOT NULL",
+    "PhoneNumber": "NOT NULL"
+  },
+  "possible_foreign_keys": [
+    {
+      "column": "BranchID",
+      "referenced_table": "dim_branch",
+      "referenced_column": "BranchID",
+      "status": "uncertain"
+    }
+  ],
+  "data_quality_concerns": [
+    "Email uniqueness is lower than total record count (45,768 unique values out of 50,001 actual counts), indicating potential duplicate accounts, shared family emails, or data entry reuse.",
+    "PhoneNumber values contain inconsistent formatting, including varying uses of parenthesis, hyphens, country codes (e.g., 001-, +1-), and embedded extensions (e.g., x06431), requiring standardization.",
+    "DateOfBirth values are stored as strings and must be cast to date types to validate against logical age ranges (e.g., minimum and maximum valid birth years)."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "business_domain": "Customer Relationship Management (CRM) / Banking / Financial Services",
+  "dataset_type": "Customer Master Data",
+  "pii_columns": [
+    "Address",
+    "Email",
+    "FirstName",
+    "LastName",
+    "PhoneNumber"
+  ],
+  "sensitive_columns": [
+    "DateOfBirth"
+  ],
+  "identifier_columns": [
+    "CustomerID"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "DateOfBirth"
+  ],
+  "categorical_columns": [
+    "BranchID"
+  ],
+  "column_classification_details": {
+    "Address": {
+      "classification": "PII",
+      "reasoning": "Contains physical street addresses, cities, states, and zip codes which can uniquely identify an individual."
+    },
+    "BranchID": {
+      "classification": "Categorical",
+      "reasoning": "Represents discrete organizational branches (200 unique values across 50,001 records) used for grouping and routing, despite being stored as an integer."
+    },
+    "CustomerID": {
+      "classification": "Identifier",
+      "reasoning": "Acts as the primary key/unique identifier for each customer record with 100% uniqueness."
+    },
+    "DateOfBirth": {
+      "classification": "Sensitive / Date",
+      "reasoning": "Represents the customer's birth date. While a date type, date of birth is considered sensitive personal data and a component of PII."
+    },
+    "Email": {
+      "classification": "PII",
+      "reasoning": "Contains direct electronic contact information linked to a specific individual."
+    },
+    "FirstName": {
+      "classification": "PII",
+      "reasoning": "Represents a person's given name, which contributes to direct identification."
+    },
+    "LastName": {
+      "classification": "PII",
+      "reasoning": "Represents a person's family name, which contributes to direct identification."
+    },
+    "PhoneNumber": {
+      "classification": "PII",
+      "reasoning": "Contains direct telephonic contact information linked to a specific individual, including extensions and country codes."
+    }
+  }
+}

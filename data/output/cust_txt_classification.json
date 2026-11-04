@@ -1,0 +1,31 @@
+{
+  "business_domain": "Customer Management / Retail Banking",
+  "dataset_type": "Customer Master Data",
+  "pii_columns": [
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber"
+  ],
+  "sensitive_columns": [
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber"
+  ],
+  "identifier_columns": [
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber"
+  ],
+  "business_measure_columns": [],
+  "date_columns": [
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber"
+  ],
+  "categorical_columns": [
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber"
+  ],
+  "column_classifications": {
+    "Address,BranchID,CustomerID,DateOfBirth,Email,FirstName,LastName,PhoneNumber": {
+      "pii": true,
+      "sensitive": true,
+      "identifier": true,
+      "business_measure": false,
+      "date": true,
+      "categorical": true,
+      "reasoning": "The dataset has been ingested as a single unparsed string column due to a missing delimiter or parsing error during file read. This single column contains multiple logical fields concatenated together, including CustomerID (identifier), FirstName, LastName, Email, PhoneNumber, Address (PII/sensitive), DateOfBirth (date/PII), and BranchID (categorical). Because the file is currently loaded as one combined string, this single column technically encapsulates PII, identifiers, dates, and categorical elements and requires data parsing before robust governance classification."
+    }
+  }
+}
