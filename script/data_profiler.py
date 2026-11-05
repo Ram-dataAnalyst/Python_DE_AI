@@ -28,16 +28,17 @@ MODEL = "gemini-3.5-flash-lite"
 
 def load_dataframe(file_path):
     extension = file_path.suffix.lower()
-
-    if extension == ".csv":
-        return pd.read_csv(file_path)
-    if extension == ".json":
-        return pd.read_json(file_path)
-    if extension == ".xlsx":
-        return pd.read_excel(file_path)
-    if extension == ".txt":
-        return pd.read_csv(file_path, sep="|")
-
+    try:
+        if extension == ".csv":
+            return pd.read_csv(file_path)
+        if extension == ".json":
+            return pd.read_json(file_path)
+        if extension == ".xlsx":
+            return pd.read_excel(file_path)
+        if extension == ".txt":
+            return pd.read_csv(file_path, sep="|")
+    except Exception as e:
+        print(e)
     print(f"Unsupported file type: {extension}")
     return None
 
